@@ -1,0 +1,6 @@
+<form name="helloworld" action="{{ action }}" method="post">
+  <input type="hidden" name="{{ page_id.name }}" value="{{ page_id.value }}" />
+  <input type="hidden" name="{{ section_id.name }}" value="{{ section_id.value }}" />
+  <p>Hi!</p>
+  <input type="submit" value="{{ 'Submit'|trans }}" />
+</form>
