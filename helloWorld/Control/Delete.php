@@ -12,7 +12,9 @@
 namespace thirdParty\helloWorld\Control;
 
 use thirdParty\helloWorld\Data\helloWorld;
-class Modify {
+use Silex\Application;
+
+class Delete {
 	
 	// pointer to the application and the submitted data
 	protected $app = null;
@@ -23,12 +25,12 @@ class Modify {
 	protected static $SECTION_ID = null;
 	
 	/**
-	 * Constructor for the class Modify
+	 * Constructor for the class Add
 	 * 
 	 * @param Application $app
 	 * @param array $data
 	 */
-	public function __construct($app, $data) {
+	public function __construct(Application $app, $data) {
 		$this->app = $app;
 		$this->data = $data;	
 		
@@ -49,37 +51,15 @@ class Modify {
 	} // __construct()
 	
 	/**
-	 * Create the modify dialog for the Hello World extension
+	 * Delete a record from the Hello World data table
 	 * 
-	 * @return string dialog
+	 * @return string 'OK' on success
 	 */
-	public function Dialog() {
-		
+	public function exec() {
 		$helloWorld = new helloWorld($this->app);
-		if (false === ($record = $helloWorld->Select(self::$PAGE_ID, self::$SECTION_ID))) {
-			// problem: there exists no data record for this PAGE_ID and SECTION_ID!
-			return $this->app['translator']->trans('For the PAGE_ID %page_id% and SECTION_ID %section_id% does not exists a data record!',
-					array('%page_id%' => self::$PAGE_ID, '%section_id%' => self::$SECTION_ID));
-		}
+		$helloWorld->Delete(self::$PAGE_ID, self::$SECTION_ID);
 		
-		// the data array contains all information for the template
-		$data = array(
-				'action' => CMS_URL.'/modules/helloworld/save.php',
-				'page_id' => array(
-						'name' => 'page_id',
-						'value' => self::$PAGE_ID
-						),
-				'section_id' => array(
-						'name' => 'section_id',
-						'value' => self::$SECTION_ID
-						),
-				'content' => array(
-						'name' => 'content',
-						'value' => $record['content']
-						)
-				);
-		// call Twig to render and return the complete modify dialog
-		return $this->app['twig']->render('modify.twig', $data);
-	} // Dialog()
+		return 'OK';
+	} // exec()
 	
-} // class Modify
+} // class Delete
