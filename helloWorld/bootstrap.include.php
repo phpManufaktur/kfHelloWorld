@@ -11,8 +11,12 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use thirdParty\helloWorld\Control\Modify;
 use thirdParty\helloWorld\Data\Setup\Setup;
+use thirdParty\helloWorld\Control\Add;
+use thirdParty\helloWorld\Control\Modify;
+use thirdParty\helloWorld\Control\Save;
+use thirdParty\helloWorld\Control\Delete;
+use thirdParty\helloWorld\Control\View;
 
 // add the path to the kitFramework Twig templates
 $app['twig.loader.filesystem']->addPath(
@@ -36,18 +40,59 @@ catch (\Exception $e) {
 	throw new \Exception(sprintf('Error scanning the /Locale directory %s.', $locale_path), 0, $e);
 }
 
-// catch helloWorld modify.php from the CMS
+/**
+ * Show the dialog for modify the Hello World record
+ */
 $app->post('/helloworld/modify', function (Request $request) use ($app) {
+	// all parameters are JSON encoded in the 'data' POST field
 	$data = json_decode($request->get('data'), true);
 	$Modify = new Modify($app, $data);
 	return new Response($Modify->Dialog());
 });
 
+/**
+ * Save the Hello World record
+ */
 $app->post('/helloworld/save', function (Request $request) use ($app) {
+	// all parameters are JSON encoded in the 'data' POST field
 	$data = json_decode($request->get('data'), true);
-	return new Response('OK');
+	$Save = new Save($app, $data);
+	return new Response($Save->exec());
 });
 
+/**
+ * Add a new Hello World record
+ */
+$app->post('/helloworld/add', function (Request $request) use ($app) {
+	// all parameters are JSON encoded in the 'data' POST field
+	$data = json_decode($request->get('data'), true);
+	$Add = new Add($app, $data);
+	return new Response($Add->exec());
+});
+
+/**
+ * Delete a Hello World record
+ */
+$app->post('/helloworld/delete', function (Request $request) use ($app) {
+	// all parameters are JSON encoded in the 'data' POST field
+	$data = json_decode($request->get('data'), true);
+	$Delete = new Delete($app, $data);
+	return new Response($Delete->exec());
+});
+
+/**
+ * View a Hello World record in the CMS frontend
+ */
+$app->post('/helloworld/view', function (Request $request) use ($app) {
+	// all parameters are JSON encoded in the 'data' POST field
+	$data = json_decode($request->get('data'), true);
+	$View = new View($app, $data);
+	return new Response($View->exec());
+});
+
+
+
+// helper: setup the extension
 $app->get('/helloworld/setup', function () use ($app) {
 	$Setup = new Setup($app);
 	$Setup->exec();
