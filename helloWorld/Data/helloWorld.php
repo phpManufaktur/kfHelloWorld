@@ -11,6 +11,7 @@
 
 namespace thirdParty\helloWorld\Data;
 
+use phpManufaktur\Toolbox\Toolbox;
 
 class helloWorld {
 	
@@ -24,7 +25,6 @@ class helloWorld {
 	 * Create the data table for the Hello World extension
 	 * 
 	 * @throws \Exception
-	 * @return boolean
 	 */
 	public function CreateTable() {
 		$table = FRAMEWORK_TABLE_PREFIX.'hello_world_data';
@@ -50,14 +50,12 @@ EOD;
 		} catch (\Doctrine\DBAL\DBALException $e) {
 			throw new \Exception($e->getMessage(), 0, $e);
 		}
-		return true;
 	} // CreateTable()
 	
 	/**
 	 * Drop the table of the Hello World extension
 	 * 
 	 * @throws \Exception
-	 * @return boolean
 	 */
 	public function DeleteTable() {
 		try {
@@ -66,7 +64,6 @@ EOD;
 		} catch (\Doctrine\DBAL\DBALException $e) {
 			throw new \Exception($e->getMessage(), 0, $e);
 		}
-		return true;
 	} // DeleteTable()
 	
 	/**
@@ -76,9 +73,8 @@ EOD;
 	 * @param integer $section_id
 	 * @param integer &$inserted_id reference, return the new ID
 	 * @throws \Exception
-	 * @return boolean
 	 */
-	public function Insert($page_id, $section_id, &$inserted_id) {
+	public function Insert($page_id, $section_id, &$inserted_id=-1) {
 		try {
 			$data = array(
 					'page_id' => $page_id,
@@ -91,11 +87,81 @@ EOD;
 		} catch (\Doctrine\DBAL\DBALException $e) {
 			throw new \Exception($e->getMessage(), 0, $e);
 		}
-		return true;
 	} // Insert()
 	
+	/**
+	 * Update the table hello_world_data with content for the desired page_id
+	 * and section_id
+	 * 
+	 * @param integer $page_id
+	 * @param integer $section_id
+	 * @param string $content
+	 * @throws \Exception
+	 */
 	public function Update($page_id, $section_id, $content) {
-		
+		try {
+			$Toolbox = new Toolbox($this->app);
+			$data = array(
+					'content' => $Toolbox->sanitizeText($content)
+					);
+			$where = array(
+					'page_id' => $page_id,
+					'section_id' => $section_id
+					);
+			$this->app['db']->update(FRAMEWORK_TABLE_PREFIX.'hello_world_data', $data, $where);
+			$this->app['monolog']->addDebug("Update hello_world_data where section_id=$section_id and page_id=$page_id");
+		} catch (\Doctrine\DBAL\DBALException $e) {
+			throw new \Exception($e->getMessage(), 0, $e);
+		}
 	} // Update()
 	
+	/**
+	 * Delete a record from the table hello_world_data
+	 * 
+	 * @param integer $page_id
+	 * @param integer $section_id
+	 * @throws \Exception
+	 */
+	public function Delete($page_id, $section_id) {
+		try {
+			$where = array(
+					'page_id' => $page_id,
+					'section_id' => $section_id
+					);
+			$this->app['db']->delete(FRAMEWORK_TABLE_PREFIX.'hello_world_data', $where);
+			$this->app['monolog']->addDebug("Delete record from hello_world_data where page_id=$page_id and section_id=$section_id");
+		} catch (\Doctrine\DBAL\DBALException $e) {
+			throw new \Exception($e->getMessage(), 0, $e);
+		}
+	} // Delete()
+	
+	/**
+	 * Select the record for the given page_id and section_id from table hello_world_data
+	 * and return the array
+	 * 
+	 * @param integer $page_id
+	 * @param integer $section_id
+	 * @throws \Exception
+	 * @return boolean|multitype:Ambigous return FALSE if the record is empty
+	 */
+	public function Select($page_id, $section_id) {
+		try {
+			$Toolbox = new Toolbox($this->app);
+			$SQL = "SELECT * FROM `".FRAMEWORK_TABLE_PREFIX."hello_world_data` WHERE ".
+					"`section_id`='$section_id' AND `page_id`='$page_id'";
+			$record = $this->app['db']->fetchAssoc($SQL);
+			if (!is_array($record)) {
+				$this->app['monolog']->addDebug("Selected record from hello_world_data where page_id=$page_id and section_id=$section_id is empty!");
+				return false;
+			}
+			$this->app['monolog']->addDebug("Select record from hello_world_data where page_id=$page_id and section_id=$section_id");
+			$result = array();
+			foreach ($record as $key => $value) 
+				$result[$key] = (is_string($value)) ? $Toolbox->unsanitizeText($value) : $value;
+		  return $result;
+		} catch (\Doctrine\DBAL\DBALException $e) {
+			throw new \Exception($e->getMessage(), 0, $e);
+		}
+	} // Select()
+
 } // class helloWorld
