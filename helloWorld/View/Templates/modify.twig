@@ -1,6 +1,26 @@
-<form name="helloworld" action="{{ action }}" method="post">
-  <input type="hidden" name="{{ page_id.name }}" value="{{ page_id.value }}" />
-  <input type="hidden" name="{{ section_id.name }}" value="{{ section_id.value }}" />
-  <p>Hi!</p>
-  <input type="submit" value="{{ 'Submit'|trans }}" />
-</form>
+<div id="hello_world_modify">
+  <form name="helloworld" action="{{ action }}" method="post">
+    <input type="hidden" name="{{ page_id.name }}" value="{{ page_id.value }}" />
+    <input type="hidden" name="{{ section_id.name }}" value="{{ section_id.value }}" />
+    {% autoescape false %}
+      <h2>{{ 'Welcome to the Hello World extension!'|trans }}</h2>
+      <p>{{ 'The Hello World extension show you how to use the KeepInTouch Framework to create a application which can be used within the framework and also as page view addon within the Content Management System WebsiteBaker or LEPTON CMS.'|trans }}</p>
+      <p>{{ 'Please <a href="https://github.com/phpManufaktur/kfHelloWorld" target="_blank">check out the program code</a> and the <a href="https://github.com/phpManufaktur/kfHelloWorld/wiki" target="_blank">tutorial for the Hello World extension</a>.'|trans }}</p>
+    {% endautoescape %}
+    <div class="value_container">
+      <fieldset>
+        <legend>{{ 'Sample value, will be saved in a data table'|trans }}</legend>
+        <div class="value_label">
+          {{ 'Text string'|trans }}
+        </div>
+        <div class="value_value">
+          <textarea name="{{ content.name }}">{{ content.value }}</textarea>
+        </div>
+        <div class="value_clear"></div>
+      </fieldset>
+    </div>
+    <div class="submit_container">
+      <input type="submit" value="{{ 'Submit'|trans }}" />
+    </div>
+  </form>
+</div>

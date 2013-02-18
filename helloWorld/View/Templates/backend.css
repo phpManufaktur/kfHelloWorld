@@ -1,0 +1,66 @@
+#hello_world_modify {
+  width: 95%;
+  height: auto;
+  border: 1px solid #363636;
+  margin: 15px 0;
+  padding: 2%;
+  color: #363636;
+  background-color: #fff;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+}
+#hello_world_modify h2 {
+  text-decoration: none;
+  border: none;
+  font-size: 14px;
+  color: #363636;
+  background-color: transparent;
+}
+#hello_world_modify p {
+  margin: 1.12em 0;
+  padding: 0;
+}
+#hello_world_modify a:link,
+#hello_world_modify a:visited {
+  text-decoration: none;
+  color: #da251d;
+  background-color: none;
+}
+#hello_world_modify a:hover,
+#hello_world_modify a:active {
+  text-decoration: underline;
+  color: #da251d;
+  background-color: none;
+}
+.value_container {
+  margin: 10px 0;
+  padding: 0;
+  width: 100%;
+}
+.value_container fieldset {
+  border: 1px solid #808080;
+  padding: 10px;
+}
+.value_label {
+  float: left;
+  width: 10%;
+  margin: 0;
+  padding: 0 1% 0 0;
+}
+.value_value {
+  float: left;
+  width: 87%;
+  margin: 0;
+  padding: 0;
+}
+.value_value textarea {
+  width: 99%;
+  height: 50px;
+}
+.value_clear {
+  clear: both;
+  width: 1px;
+  height: 1px;
+}
+
