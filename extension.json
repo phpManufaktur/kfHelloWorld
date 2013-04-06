@@ -1,0 +1,30 @@
+{
+  "name": "Hello World",
+  "title": "This 'Hello World' extension shows how to use the kitFramework to create an application.",
+  "namespace": "thirdParty\HelloWorld",
+  "release": {
+    "number" : "0.10",
+    "date" : "2013-04-07"
+  },
+  "type": "application",
+  "description": {
+    "en": {
+      "short": "'Hello World' extension for the kitFramework",
+      "long": "'Hello World' extension for the kitFramework",
+      "url": "https://kit2.phpmanufaktur.de"
+    },
+  },
+  "require": {
+    "framework": {
+      "release": "0.17"
+    },
+  },
+  "license":"MIT License",
+  "download": {
+    "availability":"public",
+    "github":{
+      "organization":"phpManufaktur",
+      "repository":"kfHelloWorld"
+    }
+  }
+}
