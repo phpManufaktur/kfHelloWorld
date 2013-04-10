@@ -1,30 +1,41 @@
 {
-  "name": "Hello World",
-  "title": "This 'Hello World' extension shows how to use the kitFramework to create an application.",
-  "namespace": "thirdParty\HelloWorld",
+  "name":"Hello World",
+  "guid":"184B991C-362A-48C9-8290-2F027A9565AE",
+  "category":"extension",
+  "group":"thirdParty",
+  "vendor":"phpManufaktur",
+  "type":"application",
+  "path":"\\extension\\thirdpary\\thirdParty\\HelloWorld",
+  "namespace": "thirdParty\\HelloWorld",
+  "link":{
+    "start":"\/helloworld",
+    "about":"\/helloworld\/about"
+  },
   "release": {
-    "number" : "0.10",
+    "number" : "0.12",
     "date" : "2013-04-07"
   },
-  "type": "application",
   "description": {
     "en": {
-      "short": "'Hello World' extension for the kitFramework",
-      "long": "'Hello World' extension for the kitFramework",
-      "url": "https://kit2.phpmanufaktur.de"
-    },
+      "title":"Hello World for the kitFramework",
+      "short": "Hello World application for the kitFramework",
+      "long": "This Hello World application show how to use the kitFramework to create an application for WebsiteBaker or LEPTON CMS",
+      "url": "https:\/\/kit2.phpmanufaktur.de"
+    }
   },
   "require": {
     "framework": {
       "release": "0.17"
-    },
+    }
   },
   "license":"MIT License",
   "download": {
     "availability":"public",
+    "agreement":"free",
     "github":{
       "organization":"phpManufaktur",
       "repository":"kfHelloWorld"
-    }
+    },
+    "url":"https:\/\/github.com\/phpManufaktur\/kfHelloWorld"
   }
 }
