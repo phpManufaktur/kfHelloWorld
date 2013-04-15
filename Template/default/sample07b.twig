@@ -1,0 +1,18 @@
+{#
+   kfHelloWorld
+ 
+   @author Team phpManufaktur <team@phpmanufaktur.de>
+   @link https://kit2.phpmanufaktur.de
+   @copyright 2013 Ralf Hertsch <ralf.hertsch@phpmanufaktur.de>
+   @license MIT License (MIT) http://www.opensource.org/licenses/MIT
+#}
+
+<div class="sample_07_container">
+  {% if name|length > 0 %}
+        <div>Herzlich willkommen: {{ name }}</div>
+  {% endif %}
+  <form action="{{ action }}" method="post"> 
+    {{ form_widget(form) }}
+    <input type="submit" name="submit" />  
+  </form>
+</div>

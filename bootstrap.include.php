@@ -1,5 +1,7 @@
 <?php
 
+use thirdParty\HelloWorld\Control\Sample06;
+use thirdParty\HelloWorld\Control\Sample07;
 /**
  * Example 1
  * 
@@ -53,3 +55,24 @@ $app->get('/command/sample05/{parameters}', function ($parameters) {
     echo "</pre>";
     return ob_get_clean();
 });
+
+/**
+ * Example 6
+ * 
+ * Use Class phpManufaktur\Basic\Control\kitCommand\Basic for the handling
+ */
+$app->get('/command/sample06/{parameters}', function ($parameters) use($app) {
+    $Sample = new Sample06();
+    return $Sample->sayHello();
+});
+
+$app->get('/command/sample07a/{parameters}', function ($parameters) use ($app) {
+    $Sample = new Sample07($app, $parameters);
+    return $Sample->Sample07a();   
+});
+
+$app->match('/command/sample07b/{parameters}', function ($parameters) use ($app) {
+    $Sample = new Sample07($app, $parameters);
+    return $Sample->Sample07b();
+});
+
