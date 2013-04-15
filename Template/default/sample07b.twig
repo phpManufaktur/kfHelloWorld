@@ -8,11 +8,14 @@
 #}
 
 <div class="sample_07_container">
-  {% if name|length > 0 %}
-        <div>Herzlich willkommen: {{ name }}</div>
+  <h2>{{ 'Please type in your name'|trans }}</h2>
+  {% if message|length > 0 %}
+    <div class="message">{{ message }}</div>
   {% endif %}
-  <form action="{{ action }}" method="post"> 
-    {{ form_widget(form) }}
-    <input type="submit" name="submit" />  
-  </form>
+  <div class="framework_form">
+    <form action="{{ action }}" method="post"> 
+      {{ form_widget(form) }}
+      <label for="form_submit">&nbsp;</label><input id="form_submit" type="submit" value="{{ 'Submit'|trans }}" /> 
+    </form>
+  </div>
 </div>
