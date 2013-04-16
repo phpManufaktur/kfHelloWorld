@@ -5,14 +5,14 @@
   "group":"thirdParty",
   "vendor":"phpManufaktur",
   "type":"application",
-  "path":"\/extension\/thirdpary\/thirdParty\/HelloWorld",
+  "path":"\/extension\/thirdparty\/thirdParty\/HelloWorld",
   "namespace": "thirdParty\\HelloWorld",
   "link":{
     "start":"\/helloworld",
     "about":"\/helloworld\/about"
   },
   "release": {
-    "number" : "0.13",
+    "number" : "0.14",
     "date" : "2013-04-16"
   },
   "description": {
