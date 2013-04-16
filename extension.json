@@ -5,7 +5,7 @@
   "group":"thirdParty",
   "vendor":"phpManufaktur",
   "type":"application",
-  "path":"\\extension\\thirdpary\\thirdParty\\HelloWorld",
+  "path":"\/extension\/thirdpary\/thirdParty\/HelloWorld",
   "namespace": "thirdParty\\HelloWorld",
   "link":{
     "start":"\/helloworld",
