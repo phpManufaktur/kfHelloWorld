@@ -1,0 +1,19 @@
+{# 
+  kfHelloWorld
+
+  @author Team phpManufaktur <team@phpmanufaktur.de>
+  @link https://kit2.phpmanufaktur.de
+  @link https://github.com/phpManufaktur/kitFramework/wiki  
+  @copyright 2012 Ralf Hertsch <ralf.hertsch@phpmanufaktur.de>
+  @license MIT License (MIT) http://www.opensource.org/licenses/MIT
+#}
+{% extends template_file('@thirdParty/HelloWorld/Template', 'sample08.body.twig') %}
+{% block content %}
+  <h2>{{ 'Hello World Sample %number%'|trans({'%number%':'08:Step 03'}) }}</h2>
+  <p>{{ 'Thank you, %title% %name%, for submitting your contact data'|trans({'%title%':data.title|capitalize|trans, '%name%':data.last_name}) }}</p>
+  <p>{{ 'Next action'|trans }}</p>
+  <ul>
+    <li><a href="{{ link_email }}">{{ 'Send me a confirmation to %email%'|trans({'%email%':data.email}) }}</a></li>
+    <li><a href="{{ link_form }}">{{ 'Submit again a form'|trans }}</a></li>
+  </ul>
+{% endblock content %}

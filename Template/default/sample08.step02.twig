@@ -1,0 +1,47 @@
+{# 
+  kfHelloWorld
+
+  @author Team phpManufaktur <team@phpmanufaktur.de>
+  @link https://kit2.phpmanufaktur.de
+  @link https://github.com/phpManufaktur/kitFramework/wiki  
+  @copyright 2012 Ralf Hertsch <ralf.hertsch@phpmanufaktur.de>
+  @license MIT License (MIT) http://www.opensource.org/licenses/MIT
+#}
+{% extends template_file('@thirdParty/HelloWorld/Template', 'sample08.body.twig') %}
+{% block jquery %}
+  {{ parent() }}
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+  {% if app.translator.locale == 'de' %}
+    <script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/i18n/jquery.ui.datepicker-de.js"></script>
+  {% endif %}
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all"/>
+{% endblock jquery %}
+{% block content %}
+  <h2>{{ 'Hello World Sample %number%'|trans({'%number%':'08:Step 02'}) }}</h2>
+  {% if message|length > 0 %}
+    <div class="message">{{ message }}</div>
+  {% endif %}
+  <div class="framework_form">
+    <form action="{{ action }}" method="post">
+      {{ form_widget(form) }}
+      <label for="form_submit">&nbsp;</label>
+      <input id="form_submit" type="submit" value="{{ 'Submit'|trans }}" /> 
+    </form>      
+  </div>
+  <div class="clear"></div>
+{% endblock content %}
+{% block footer %}
+  {{ parent() }}
+  <script type="text/javascript">
+    if (typeof 'jQuery' !== 'undefined') {
+      $(document).ready(function() {
+        $( "#form_birthday" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '1910:2000',
+          dateFormat: 'dd.mm.yy'
+        });
+      });
+    }
+  </script>
+{% endblock footer %}
