@@ -3,6 +3,7 @@
 use thirdParty\HelloWorld\Control\Sample06;
 use thirdParty\HelloWorld\Control\Sample07;
 use thirdParty\HelloWorld\Control\Sample08;
+use thirdParty\HelloWorld\Control\SiteModified;
 
 // scan the /Locale directory and add all available languages
 $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
@@ -11,8 +12,7 @@ $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
 /**
  * Example 1
  *
- * "Hello World" as kitCommand at any content of the CMS
- *
+ * "Hello World"
  */
 $app->get('/command/helloworld/{parameters}', function ()
 {
@@ -65,9 +65,9 @@ $app->get('/command/sample05/{parameters}', function ($parameters) {
 /**
  * Example 6
  *
- * Use Class phpManufaktur\Basic\Control\kitCommand\Basic for the handling
+ * Use an object for the handling
  */
-$app->get('/command/sample06/{parameters}', function ($parameters) use($app) {
+$app->get('/command/sample06/{parameters}', function () {
     $Sample = new Sample06();
     return $Sample->sayHello();
 });
@@ -133,4 +133,10 @@ $app->match('/helloworld/sample08/step03/{parameters}', function ($parameters) u
 $app->match('/helloworld/sample08/step04/{id}/{parameters}', function ($id, $parameters) use ($app) {
     $Sample = new Sample08($app, $parameters);
     return $Sample->step04($id);
+});
+
+
+$app->match('/command/sitemodified/{parameters}', function ($parameters) use ($app) {
+    $SiteModified = new SiteModified($app, $parameters);
+    return $SiteModified->exec();
 });

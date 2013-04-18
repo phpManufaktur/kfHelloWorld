@@ -13,7 +13,8 @@ namespace thirdParty\HelloWorld\Control;
 
 use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
 
-class Sample07 extends kitCommandBasic {
+class Sample07 extends kitCommandBasic
+{
 
     public function Sample07a()
     {
@@ -26,7 +27,7 @@ class Sample07 extends kitCommandBasic {
     public function Sample07b()
     {
         $form = $this->app['form.factory']->createBuilder('form')
-        ->add('name', 'text', array())
+        ->add('name', 'text')
         ->getForm();
 
         if (isset(self::$POST['form']['name'])) {

@@ -15,8 +15,14 @@ if ('á' != "\xc3\xa1") {
 }
 
 return array(
+    '~~ <b>Error</b>: SiteModified got no valid modification date! ~~'
+        => '~~ <b>Fehler</b>: SiteModified konnte kein gültiges Änderungsdatum ermitteln! ~~',
+    '~~ <b>Error</b>: SiteModified support only WebsiteBaker or LEPTON CMS. ~~'
+        => '~~ <b>Fehler</b>: SiteModified benötigt WebsiteBaker oder LEPTON CMS. ~~',
     'Birthday'
         => 'Geburtstag',
+    'd/m/Y \a\t H:i'
+        => 'd.m.Y \u\m H:i',
     'First name'
         => 'Vorname',
     'Hello %title% %name%'
@@ -49,6 +55,8 @@ return array(
         => 'Vielen Dank, %title% %name%, für die Übermittlung Ihrer Kontaktdaten.',
     '<p>The submitted form is not valid, please try again.</p>'
         => '<p>Die übermittelten Formulardaten sind ungültig, bitte versuchen Sie es erneut.</p>',
+    'This site was last modified on %datetime%.'
+        => 'Diese Website wurde zuletzt am %datetime% modifiziert.',
     'Title'
         => 'Anrede',
     'We have send you a confirmation to <b>%email%</b>, please check your inbox.'
