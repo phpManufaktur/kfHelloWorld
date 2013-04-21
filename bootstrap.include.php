@@ -104,8 +104,22 @@ $app->match('/command/sample07b/{parameters}', function ($parameters) use ($app)
  */
 $app->match('/command/sample08/{parameters}', function ($parameters) use ($app) {
     $Sample = new Sample08($app, $parameters);
+    $params = $Sample->getParameters();
     // the source of the iframe points to a route of the kitFramework (see below)
-    $source = FRAMEWORK_URL.'/helloworld/sample08/start/'.$parameters;
+    if (isset($params['GET']['redirect'])) {
+        if (isset($params['GET']['id'])) {
+            // i.e. in Step04 there is additional the ID needed
+            $source = FRAMEWORK_URL.'/helloworld/sample08/'.$params['GET']['redirect'].'/'.$params['GET']['id'].'/'.$parameters;
+        }
+        else {
+            // redirect to the desired step
+            $source = FRAMEWORK_URL.'/helloworld/sample08/'.$params['GET']['redirect'].'/'.$parameters;
+        }
+    }
+    else {
+        // no redirect, go to start
+        $source = FRAMEWORK_URL.'/helloworld/sample08/start/'.$parameters;
+    }
     return $Sample->createIFrame($source);
 });
 
@@ -139,4 +153,15 @@ $app->match('/helloworld/sample08/step04/{id}/{parameters}', function ($id, $par
 $app->match('/command/sitemodified/{parameters}', function ($parameters) use ($app) {
     $SiteModified = new SiteModified($app, $parameters);
     return $SiteModified->exec();
+});
+
+
+$app->match('/search/command/helloworld/{parameters}', function ($parameters) use ($app) {
+    $params = json_decode(base64_decode($parameters), true);
+    $search = $params['search'];
+    $search['text'] = 'Ich bin ein Treffer!';
+    $result = array(
+        'search' => $search
+    );
+    return base64_encode(json_encode($result));
 });

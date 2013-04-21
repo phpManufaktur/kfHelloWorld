@@ -25,7 +25,10 @@ class Sample08 extends kitCommandBasic {
     {
         return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.start.twig', self::$preferred_template),
             array(
-                'link' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string
+                'link' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string,
+                'cms' => self::$cms,
+                'frame' => self::$frame,
+                'redirect' => ''
         ));
     }
 
@@ -74,7 +77,10 @@ class Sample08 extends kitCommandBasic {
             array(
                 'action' => FRAMEWORK_URL.'/helloworld/sample08/step03/'.self::$parameter_string,
                 'form' => $form->createView(),
-                'message' => $this->getMessage()
+                'message' => $this->getMessage(),
+                'cms' => self::$cms,
+                'frame' => self::$frame,
+                'redirect' => 'step02'
         ));
     }
 
@@ -113,6 +119,9 @@ class Sample08 extends kitCommandBasic {
                 'data' => $record,
                 'link_email' => FRAMEWORK_URL.'/helloworld/sample08/step04/'.$id.'/'.self::$parameter_string,
                 'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string,
+                'cms' => self::$cms,
+                'frame' => self::$frame,
+                'redirect' => 'step03'
             ));
     }
 
@@ -140,6 +149,9 @@ class Sample08 extends kitCommandBasic {
             array(
                 'data' => $data,
                 'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string,
+                'cms' => self::$cms,
+                'frame' => self::$frame,
+                'redirect' => "step04&id=$id"
             ));
     }
 }
