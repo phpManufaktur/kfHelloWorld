@@ -153,7 +153,8 @@ $app->match('/helloworld/sample08/step04/{id}/{parameters}', function ($id, $par
 $app->match('/command/sitemodified/{parameters}', function ($parameters) use ($app) {
     $SiteModified = new SiteModified($app, $parameters);
     return $SiteModified->exec();
-});
+})
+->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.sitemodified.json');
 
 
 $app->match('/search/command/helloworld/{parameters}', function ($parameters) use ($app) {
