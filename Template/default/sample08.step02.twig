@@ -7,7 +7,11 @@
   @copyright 2012 Ralf Hertsch <ralf.hertsch@phpmanufaktur.de>
   @license MIT License (MIT) http://www.opensource.org/licenses/MIT
 #}
-{% extends template_file('@thirdParty/HelloWorld/Template', 'sample08.body.twig') %}
+{% extends template_file('@phpManufaktur/Basic/Template', 'kitcommand.iframe.body.twig') %}
+{% block stylesheet %}
+  {{ parent() }}
+  <link rel="stylesheet" type="text/css" href="{{ THIRDPARTY_URL }}/HelloWorld/Template/default/css/sample08.css" media="screen, projection" />
+{% endblock stylesheet %}
 {% block jquery %}
   {{ parent() }}
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -18,14 +22,13 @@
 {% endblock jquery %}
 {% block content %}
   <h2>{{ 'Hello World Sample %number%'|trans({'%number%':'08:Step 02'}) }}</h2>
-  {% if message|length > 0 %}
-    <div class="message">{{ message }}</div>
-  {% endif %}
+  {{ parent() }}
   <div class="framework_form">
     <form action="{{ action }}" method="post">
       {{ form_widget(form) }}
       <label for="form_submit">&nbsp;</label>
       <input id="form_submit" type="submit" value="{{ 'Submit'|trans }}" /> 
+      <div class="clear"></div>
     </form>      
   </div>
   <div class="clear"></div>

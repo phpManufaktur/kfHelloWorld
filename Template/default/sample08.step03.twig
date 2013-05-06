@@ -7,9 +7,14 @@
   @copyright 2012 Ralf Hertsch <ralf.hertsch@phpmanufaktur.de>
   @license MIT License (MIT) http://www.opensource.org/licenses/MIT
 #}
-{% extends template_file('@thirdParty/HelloWorld/Template', 'sample08.body.twig') %}
+{% extends template_file('@phpManufaktur/Basic/Template', 'kitcommand.iframe.body.twig') %}
+{% block stylesheet %}
+  {{ parent() }}
+  <link rel="stylesheet" type="text/css" href="{{ THIRDPARTY_URL }}/HelloWorld/Template/default/css/sample08.css" media="screen, projection" />
+{% endblock stylesheet %}
 {% block content %}
   <h2>{{ 'Hello World Sample %number%'|trans({'%number%':'08:Step 03'}) }}</h2>
+  {{ parent() }}
   <p>{{ 'Thank you, %title% %name%, for submitting your contact data'|trans({'%title%':data.title|capitalize|trans, '%name%':data.last_name}) }}</p>
   <p>{{ 'Next action'|trans }}</p>
   <ul>
