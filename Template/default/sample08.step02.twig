@@ -25,6 +25,7 @@
   {{ parent() }}
   <div class="framework_form">
     <form action="{{ action }}" method="post">
+      <input type="hidden" name="parameter_id" value="{{ basic.parameter_id }}" />
       {{ form_widget(form) }}
       <label for="form_submit">&nbsp;</label>
       <input id="form_submit" type="submit" value="{{ 'Submit'|trans }}" /> 

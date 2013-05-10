@@ -28,9 +28,9 @@ class Sample08 extends kitCommandBasic {
         $this->setPageDescription('kitCommand Sample for the usage of iframes');
         $this->setPageKeywords('KIT,kitFramework,Sample,Hello World');
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.start.twig', self::$preferred_template),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.start.twig', $this->getPreferredTemplateStyle()),
             array(
-                'link' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string,
+                'link' => FRAMEWORK_URL.'/helloworld/sample08/step02?pid='.$this->getParameterID(),
                 'basic' => $this->getBasicSettings()
         ));
     }
@@ -77,9 +77,9 @@ class Sample08 extends kitCommandBasic {
     {
         $form = $this->createForm();
         $this->setRedirectRoute('step02');
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step02.twig', self::$preferred_template),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step02.twig', $this->getPreferredTemplateStyle()),
             array(
-                'action' => FRAMEWORK_URL.'/helloworld/sample08/step03/'.self::$parameter_string,
+                'action' => FRAMEWORK_URL.'/helloworld/sample08/step03?pid='.$this->getParameterID(),
                 'form' => $form->createView(),
                 'basic' => $this->getBasicSettings()
         ));
@@ -116,11 +116,11 @@ class Sample08 extends kitCommandBasic {
 
         $this->setRedirectRoute('step03');
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step03.twig', self::$preferred_template),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step03.twig', $this->getPreferredTemplateStyle()),
             array(
                 'data' => $record,
-                'link_email' => FRAMEWORK_URL.'/helloworld/sample08/step04/'.$id.'/'.self::$parameter_string,
-                'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string,
+                'link_email' => FRAMEWORK_URL.'/helloworld/sample08/step04/'.$id.'?pid='.$this->getParameterID(),
+                'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02?pid='.$this->getParameterID(),
                 'basic' => $this->getBasicSettings()
             ));
     }
@@ -147,10 +147,10 @@ class Sample08 extends kitCommandBasic {
 
         $this->setRedirectRoute("step04&id=$id");
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step04.twig', self::$preferred_template),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step04.twig', $this->getPreferredTemplateStyle()),
             array(
                 'data' => $data,
-                'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02/'.self::$parameter_string,
+                'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02?pid='.$this->getParameterID(),
                 'basic' => $this->getBasicSettings()
             ));
     }

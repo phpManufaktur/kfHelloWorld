@@ -11,16 +11,17 @@
 
 namespace thirdParty\HelloWorld\Control;
 
+use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
 
-class Sample06 {
-    
-    /**
-     * Return "Hello World" and the __METHOD__ name
-     * 
-     * @return string
-     */
-    public function sayHello()
+class Sample06 extends kitCommandBasic
+{
+
+    public function exec()
     {
-        return 'Hello World, this is '.__METHOD__;
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample06.twig'),
+            array(
+                'cms' => $this->getCMSinfoArray()
+        ));
     }
+
 }

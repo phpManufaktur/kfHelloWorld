@@ -1,0 +1,20 @@
+{
+  "command":"helloworld",
+  "vendor": {
+    "name":"phpManufaktur",
+    "url":"https://phpmanufaktur.de"
+    },
+  "name": {
+    "en":"'Hello World', kitCommand Sample",
+    "de":"'Hello World', kitCommand Beispiel"
+  },
+  "description": {
+    "en":"'Hello World' Sample kitCommand which show the information and parameters passed to the command.",
+    "de":"'Hello World' Beispiel für ein kitCommand das die Informationen und Parameter anzeigt, die an den Befehl übergeben werden."
+  },
+  "info": {
+    "en": {
+      "link":"https://kit2.phpmanufaktur.de"
+    }
+  }
+}
