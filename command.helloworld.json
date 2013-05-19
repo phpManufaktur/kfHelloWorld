@@ -16,5 +16,20 @@
     "en": {
       "link":"https://kit2.phpmanufaktur.de"
     }
+  },
+  "wiki": {
+    "en": {
+      "link":"https://github.com/phpManufaktur/kfHelloWorld/wiki"
+    }
+  },
+  "issues": {
+    "en": {
+      "link":"https://github.com/phpManufaktur/kfHelloWorld/issues"
+    }
+  },
+  "support": {
+    "en": {
+      "link":"https://support.phpmanufaktur.de"
+    }
   }
 }
