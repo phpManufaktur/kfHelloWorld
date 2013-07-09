@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 // scan the /Locale directory and add all available languages
 $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
-
+// scan the /Locale/Custom directory and add all available languages
+$app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale/Custom');
 
 /**
  * Example 1
