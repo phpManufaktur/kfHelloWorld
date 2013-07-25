@@ -1,6 +1,6 @@
 ### Hello World
 
-This Hello World extension for the KeepInTouch Framework shows how to use the Framework and its features, libraries a.s.o. to create an application and additional, how to create an add-on for usage with the Content Management System WebsiteBaker and/or LEPTON CMS.   
+This Hello World extension for the kitFramework shows how to use the Framework and its features, libraries a.s.o. to create an application and additional, how to create an add-on for usage with the Content Management System WebsiteBaker and/or LEPTON CMS.   
 
 The Framework for KeepInTouch is based on the [SILEX Framework] [1] and is preconfigured for the kitFramework Extensions of the phpManufaktur and for 3rd party extensions.
 

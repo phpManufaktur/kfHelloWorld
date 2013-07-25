@@ -58,7 +58,7 @@ return array(
     'This site was last modified on %datetime%.'
         => 'Diese Website wurde zuletzt am %datetime% modifiziert.',
     'Title'
-        => 'Anrede',
+        => 'Titel',
     'We have send you a confirmation to <b>%email%</b>, please check your inbox.'
         => 'Wir haben Ihnen eine Bestätigung an die Adresse <b>%email%</b> gesendet, bitte überprüfen Sie Ihr Postfach.'
 );
