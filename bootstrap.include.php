@@ -76,15 +76,7 @@ $app->post('/command/sample05', function () {
  */
 $app->match('/command/sample06', function (Request $request) use ($app) {
     print_r($app['session']->all());
-
-    //print_r($app['request']->session->all());
-    //$sess = $request->getSession();
-    //print_r($sess->get('kitcmd_ce4q65u1m'));
-    //echo "test: ".
-   // print_r($app['request']->getSession()->all());
     $Sample = new Sample06($app, 'ce4q65u1m');
-    //echo "sess: ".$Sample->getSessionID();
-    //print_r($app['session']->get('kitcmd_ce4q65u1m'));
     return $Sample->exec();
 });
 
