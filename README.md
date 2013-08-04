@@ -23,3 +23,5 @@ You will find all information about the "Hello World Extension" at [GitHub] [5],
 [4]: https://support.phpmanufaktur.de
 [5]: https://github.com/phpManufaktur/kfHelloWorld
 [6]: https://github.com/phpManufaktur/kfHelloWorld/wiki
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/e667f82288d6983b47bf5b4f13ae1406 "githalytics.com")](http://githalytics.com/phpManufaktur/kfHelloWorld)
