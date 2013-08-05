@@ -30,17 +30,19 @@ class Sample07 extends kitCommandBasic
         ->add('name', 'text')
         ->getForm();
 
-        if (isset(self::$POST['form']['name'])) {
+        $POST = $this->app['request']->request->get('POST', array());
+        if (isset($POST['form']['name'])) {
+            echo "hit";
             // the form was already submitted
             $this->setMessage($this->app['translator']->trans('<p>Hello %name%, nice to meet you!</p>',
-                array('%name%' => self::$POST['form']['name'])));
+                array('%name%' => $POST['form']['name'])));
         }
 
         return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample07b.twig'),
             array(
                 'form' => $form->createView(),
-                'action' => self::$cms['page_url'],
-                'name' => (isset(self::$POST['form']['name'])) ? self::$POST['form']['name'] : '',
+                'action' => $this->getCMSpageURL(),
+                'name' => (isset($POST['form']['name'])) ? $POST['form']['name'] : '',
                 'message' => $this->getMessage()
         ));
     }

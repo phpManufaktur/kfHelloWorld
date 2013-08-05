@@ -18,7 +18,7 @@ class Sample06 extends kitCommandBasic
 
     public function exec()
     {
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample06.twig'),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample06.twig', $this->getPreferredTemplateStyle()),
             array(
                 'cms' => $this->getCMSinfoArray()
         ));

@@ -34,28 +34,35 @@ $app->get('/helloworld', function ()
     return 'Hello World!';
 });
 
-/**
- * Example 3: "Hello USER"
- */
-$app->get('/helloworld/{name}', function ($name)
-{
-    return "Hello $name!";
+$app->get('/admin/helloworld', function() {
+    return 'Hello World!';
 });
 
 /**
- * Example 4
- *
- * Show the CMS parameters as associated array
- *
+ * The kitCommand HelloUser show the usage of parameters
  */
-$app->post('/command/sample04', function (Request $request) {
+$app->post('/command/hellouser', function() use($app) {
+    $parameter = $app['request']->request->get('parameter');
+    if (isset($parameter['name']) && !empty($parameter['name'])) {
+        return sprintf('Hello %s!', $parameter['name']);
+    }
+    else {
+        return 'Please use the parameter "name[]" in the kitCommand to tell me your name!';
+    }
+});
+
+$app->post('/command/cmsinfo', function() use($app) {
+    // start output buffer
     ob_start();
+    // get the CMS parameters
+    $cms = $app['request']->request->get('cms');
     echo "<pre>";
-    print_r($request->request->all());
+    print_r($cms);
     echo "</pre>";
+    // return the buffer content and clean the output buffer
     return ob_get_clean();
-})
-->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.sample04.json');
+});
+
 
 /**
  * Example 5
@@ -68,26 +75,26 @@ $app->post('/command/sample05', function () {
 })
 ->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.sample05.json');
 
+
 /**
  * Example 6
  *
  * Use Class kitCommand\Basic and the template engine Twig to display some
  * information about the used content management system
  */
-$app->match('/command/sample06', function (Request $request) use ($app) {
-    print_r($app['session']->all());
-    $Sample = new Sample06($app, 'ce4q65u1m');
+$app->match('/command/sample06', function() use ($app) {
+    $Sample = new Sample06($app);
     return $Sample->exec();
 });
 
 /**
- * Example 7b
+ * Example 07
  *
  * Use class kitCommand\Basic, Twig, Translator and the Form factory to create
  * and display a form to type in some data and give a response
  */
-$app->match('/command/sample07b/{parameters}', function ($parameters) use ($app) {
-    $Sample = new Sample07($app, $parameters);
+$app->match('/command/sample07', function() use ($app) {
+    $Sample = new Sample07($app);
     return $Sample->Sample07b();
 });
 
