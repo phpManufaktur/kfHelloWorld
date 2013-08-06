@@ -1,27 +1,18 @@
-### Hello World
+![Hello World Extension](https://raw.github.com/phpManufaktur/kfHelloWorld/master/extension.jpg)
 
-This Hello World extension for the kitFramework shows how to use the Framework and its features, libraries a.s.o. to create an application and additional, how to create an add-on for usage with the Content Management System WebsiteBaker and/or LEPTON CMS.   
+The **Hello World Extension** for the [kitFramework](https://kit2.phpmanufaktur.de) show you how to use the Framework, its features and libraries. Learn how to create an extension or application for the kitFramework and how to create and use kitCommands in the parent Content Management System (WebsiteBaker, LEPTON or BlackCat CMS).   
 
-The Framework for KeepInTouch is based on the [SILEX Framework] [1] and is preconfigured for the kitFramework Extensions of the phpManufaktur and for 3rd party extensions.
-
-Please check out the [kitFramework API] [2] for more informations.
+The [Hello World Wiki](https://github.com/phpManufaktur/kfHelloWorld/wiki/Home) will guide you step by step.
 
 #### Requirements
 
-* minimum PHP 5.3.3
-* Apache server at a *nix operating system
+* kitFramework installed
+* Hello World Extension installed
+* any supported Content Management System
 
 #### First Steps
 
-The **KeepInTouch Framework** is in BETA state, to get startet please visit the [KIT2 Homepage] [3], read the [kitFramework API] [2] and join the [Addons Support Group] [4] to get further information and support.
+The **kitFramework** is in BETA state, to get more information please visit the [KIT2 Project Home](https://kit2.phpmanufaktur.de) and join the [Add-on Support Group](https://support.phpmanufaktur.de) for any support.
 
-You will find all information about the "Hello World Extension" at [GitHub] [5], there is also hosted the [Hello World Tutorial] [6] 
-
-[1]: http://silex.sensiolabs.org/
-[2]: https://github.com/phpManufaktur/kitFramework/wiki
-[3]: https://kit2.phpmanufaktur.de
-[4]: https://support.phpmanufaktur.de
-[5]: https://github.com/phpManufaktur/kfHelloWorld
-[6]: https://github.com/phpManufaktur/kfHelloWorld/wiki
-
+Please start with the [Hello World Wiki](https://github.com/phpManufaktur/kfHelloWorld/wiki/Home). 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/e667f82288d6983b47bf5b4f13ae1406 "githalytics.com")](http://githalytics.com/phpManufaktur/kfHelloWorld)
