@@ -12,14 +12,14 @@
 namespace thirdParty\HelloWorld\Control;
 
 
-class Sample05 {
-    
+class HelloObject {
+
     /**
      * Return "Hello World" and the __METHOD__ name
-     * 
+     *
      * @return string
      */
-    public function sayHello()
+    public function SayHello()
     {
         return 'Hello World, this is '.__METHOD__;
     }

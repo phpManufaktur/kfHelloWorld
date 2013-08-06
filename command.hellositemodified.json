@@ -1,5 +1,5 @@
 {
-  "command":"sitemodified",
+  "command":"HelloSiteModified",
   "vendor": {
     "name":"phpManufaktur",
     "url":"https://phpmanufaktur.de"

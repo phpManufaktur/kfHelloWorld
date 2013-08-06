@@ -1,5 +1,5 @@
 {
-  "command":"helloworld",
+  "command":"HelloObject",
   "vendor": {
     "name":"phpManufaktur",
     "url":"https://phpmanufaktur.de"
@@ -9,8 +9,8 @@
     "de":"'Hello World', kitCommand Beispiel"
   },
   "description": {
-    "en":"'Hello World' Sample kitCommand which show how to use a class for the response to the command.",
-    "de":"'Hello World' Beispiel für ein kitCommand das die Verwendung einer Klasse als Reaktion auf einen Befehl zeigt."
+    "en":"'Hello World' Sample kitCommand which show how to use objects in the controllers.",
+    "de":"'Hello World' Beispiel für die Verwendung Objekten in den Kontrollern."
   },
   "info": {
     "en": {

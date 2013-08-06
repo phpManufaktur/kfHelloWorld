@@ -13,24 +13,23 @@ namespace thirdParty\HelloWorld\Control;
 
 use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
 use thirdParty\HelloWorld\Data\HelloWorld;
+use Silex\Application;
 
-class Sample08 extends kitCommandBasic {
+class HelloIFrame extends kitCommandBasic {
 
     /**
      * Show a simple dialog within a iframe
      *
      * @return string rendered dialog
      */
-    public function start()
+    public function start(Application $app)
     {
-        $this->setRedirectRoute('start');
-        $this->setPageTitle('Sample 08: Start');
-        $this->setPageDescription('kitCommand Sample for the usage of iframes');
-        $this->setPageKeywords('KIT,kitFramework,Sample,Hello World');
+        $this->app = $app;
+        $this->initParameters();
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.start.twig', $this->getPreferredTemplateStyle()),
+        $this->setRedirectRoute('/helloworld/iframe/start');
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.start.twig', $this->getPreferredTemplateStyle()),
             array(
-                'link' => FRAMEWORK_URL.'/helloworld/sample08/step02?pid='.$this->getParameterID(),
                 'basic' => $this->getBasicSettings()
         ));
     }
@@ -56,11 +55,6 @@ class Sample08 extends kitCommandBasic {
             'label' => 'Last name',
             'required' => true
         ))
-        ->add('birthday', 'birthday', array(
-            'label' => 'Birthday',
-            'format' => 'dd.MM.yyyy',
-            'widget' => 'single_text'
-        ))
         ->add('email', 'email', array(
             'label' => 'Email',
             'required' => true
@@ -73,20 +67,25 @@ class Sample08 extends kitCommandBasic {
      *
      * @return rendered dialog
      */
-    public function step02()
+    public function step02(Application $app)
     {
+        $this->app = $app;
+        $this->initParameters();
+
         $form = $this->createForm();
-        $this->setRedirectRoute('step02');
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step02.twig', $this->getPreferredTemplateStyle()),
+        $this->setRedirectRoute('/helloworld/sample08/step02');
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step02.twig', $this->getPreferredTemplateStyle()),
             array(
-                'action' => FRAMEWORK_URL.'/helloworld/sample08/step03?pid='.$this->getParameterID(),
                 'form' => $form->createView(),
                 'basic' => $this->getBasicSettings()
         ));
     }
 
-    public function step03()
+    public function step03(Application $app)
     {
+        $this->app = $app;
+        $this->initParameters();
+
         // create the form
         $form = $this->createForm();
         // bind the request to the form
@@ -108,31 +107,31 @@ class Sample08 extends kitCommandBasic {
             'title' => $form_data['title'],
             'first_name' => isset($form_data['first_name']) ? $form_data['first_name'] : '',
             'last_name' => $form_data['last_name'],
-            'birthday' => $form_data['birthday']->format('Y-m-d'),
             'email' => $form_data['email']
         );
         // insert the record and get the new ID
-        $id = $HelloWorld->insert($record);
+        $record['id'] = $HelloWorld->insert($record);
 
-        $this->setRedirectRoute('step03');
+        $this->setRedirectRoute('/helloworld/iframe/step04/'.$record['id']);
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step03.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step03.twig', $this->getPreferredTemplateStyle()),
             array(
                 'data' => $record,
-                'link_email' => FRAMEWORK_URL.'/helloworld/sample08/step04/'.$id.'?pid='.$this->getParameterID(),
-                'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02?pid='.$this->getParameterID(),
                 'basic' => $this->getBasicSettings()
             ));
     }
 
-    public function step04($id)
+    public function step04(Application $app, $id)
     {
+        $this->app = $app;
+        $this->initParameters();
+
         // select the contact data from the database
         $HelloWorld = new HelloWorld($this->app);
         $data = $HelloWorld->select($id);
 
         // create the email body
-        $body = $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.email.twig'),
+        $body = $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.email.twig', $this->getPreferredTemplateStyle()),
             array('data' => $data));
 
         // create the message
@@ -145,12 +144,11 @@ class Sample08 extends kitCommandBasic {
         // send the message
         $this->app['mailer']->send($message);
 
-        $this->setRedirectRoute("step04&id=$id");
+        $this->setRedirectRoute('/helloworld/iframe/step04/'.$id);
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample08.step04.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step04.twig', $this->getPreferredTemplateStyle()),
             array(
                 'data' => $data,
-                'link_form' => FRAMEWORK_URL.'/helloworld/sample08/step02?pid='.$this->getParameterID(),
                 'basic' => $this->getBasicSettings()
             ));
     }

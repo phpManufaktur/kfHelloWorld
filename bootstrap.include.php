@@ -1,12 +1,8 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
-use thirdParty\HelloWorld\Control\Sample05;
-use thirdParty\HelloWorld\Control\Sample06;
-use thirdParty\HelloWorld\Control\Sample07;
-use thirdParty\HelloWorld\Control\Sample08;
-use thirdParty\HelloWorld\Control\SiteModified;
-use Symfony\Component\HttpFoundation\Session\Session;
+use thirdParty\HelloWorld\Control\HelloObject;
+use thirdParty\HelloWorld\Control\HelloBasic;
+use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
 
 // scan the /Locale directory and add all available languages
 $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
@@ -14,8 +10,6 @@ $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
 $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale/Custom');
 
 /**
- * Example 1
- *
  * "Hello World"
  */
 $app->post('/command/helloworld', function ()
@@ -25,8 +19,6 @@ $app->post('/command/helloworld', function ()
 ->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.helloworld.json');
 
 /**
- * Example 2
- *
  * "Hello World" directly from kitFramework
  */
 $app->get('/helloworld', function ()
@@ -34,6 +26,9 @@ $app->get('/helloworld', function ()
     return 'Hello World!';
 });
 
+/**
+ * Protected "Hello World!"
+ */
 $app->get('/admin/helloworld', function() {
     return 'Hello World!';
 });
@@ -51,7 +46,10 @@ $app->post('/command/hellouser', function() use($app) {
     }
 });
 
-$app->post('/command/cmsinfo', function() use($app) {
+/**
+ * Sample: CMSinfo
+ */
+$app->post('/command/helloinfo', function() use($app) {
     // start output buffer
     ob_start();
     // get the CMS parameters
@@ -65,39 +63,25 @@ $app->post('/command/cmsinfo', function() use($app) {
 
 
 /**
- * Example 5
- *
  * Use an object for the handling
  */
-$app->post('/command/sample05', function () {
-    $Sample = new Sample05();
-    return $Sample->sayHello();
+$app->post('/command/helloobject', function () {
+    $HelloObject = new HelloObject();
+    return $HelloObject->SayHello();
 })
-->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.sample05.json');
+->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.helloobject.json');
 
 
 /**
- * Example 6
+ * HelloBasic
  *
  * Use Class kitCommand\Basic and the template engine Twig to display some
  * information about the used content management system
  */
-$app->match('/command/sample06', function() use ($app) {
-    $Sample = new Sample06($app);
-    return $Sample->exec();
+$app->post('/command/hellobasic', function() use ($app) {
+    $HelloBasic = new HelloBasic($app);
+    return $HelloBasic->exec();
 });
-
-/**
- * Example 07
- *
- * Use class kitCommand\Basic, Twig, Translator and the Form factory to create
- * and display a form to type in some data and give a response
- */
-$app->match('/command/sample07', function() use ($app) {
-    $Sample = new Sample07($app);
-    return $Sample->Sample07b();
-});
-
 
 /**
  * Sample 8: Start
@@ -106,70 +90,21 @@ $app->match('/command/sample07', function() use ($app) {
  * which will contain the response of the kitCommand. The iframe source point to
  * a route of the kitFramework.
  */
-$app->match('/command/sample08', function () use ($app) {
-    $Sample = new Sample08($app);
-    $cmsGET = $Sample->getCMSgetParameters();
-    $route = $Sample->getRedirectRoute();
-    $parameter_id = isset($cmsGET['parameter_id']) ? $cmsGET['parameter_id'] : $Sample->getParameterID();
-
-    // the source of the iframe points to a route of the kitFramework (see below)
-    if (!empty($route)) {
-        if (isset($cmsGET['id'])) {
-            // i.e. in Step04 there is additional the ID needed
-            $source = FRAMEWORK_URL."/helloworld/sample08/$route/".$cmsGET['id'].'?pid='.$parameter_id;
-        }
-        else {
-            // redirect to the desired step
-            $source = FRAMEWORK_URL."/helloworld/sample08/$route?pid=".$parameter_id;
-        }
-    }
-    else {
-        // no redirect, go to start
-        $source = FRAMEWORK_URL."/helloworld/sample08/start?pid=".$parameter_id;
-    }
-    return $Sample->createIFrame($source);
+$app->post('/command/helloiframe', function () use ($app) {
+    $kitCommand = new kitCommandBasic($app);
+    return $kitCommand->createIFrame('/helloworld/iframe/start');
 });
 
 /**
- * Sample 8: Route to start (default)
- *
- * Respond with a full rendered HTML5 page which is independend from any settings
- * of the Content Management System
+ * The steps to the different dialogs of the HelloIFrame form
  */
-$app->match('/helloworld/sample08/start', function () use ($app) {
-    $Sample = new Sample08($app);
-    return $Sample->start();
-});
-
-$app->match('/helloworld/sample08/step02', function () use ($app) {
-    $Sample = new Sample08($app);
-    return $Sample->step02();
-});
-
-$app->match('/helloworld/sample08/step03', function () use ($app) {
-    $Sample = new Sample08($app);
-    return $Sample->step03();
-});
-
-$app->match('/helloworld/sample08/step04/{id}', function ($id) use ($app) {
-    $Sample = new Sample08($app);
-    return $Sample->step04($id);
-});
+$app->match('/helloworld/iframe/start',       'thirdParty\HelloWorld\Control\HelloIFrame::start');
+$app->match('/helloworld/iframe/step02',      'thirdParty\HelloWorld\Control\HelloIFrame::step02');
+$app->match('/helloworld/iframe/step03',      'thirdParty\HelloWorld\Control\HelloIFrame::step03');
+$app->match('/helloworld/iframe/step04/{id}', 'thirdParty\HelloWorld\Control\HelloIFrame::step04');
 
 
-$app->match('/command/sitemodified/{parameters}', function ($parameters) use ($app) {
-    $SiteModified = new SiteModified($app, $parameters);
-    return $SiteModified->exec();
-})
-->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.sitemodified.json');
+$app->match('/command/hellositemodified', 'thirdParty\HelloWorld\Control\HelloSiteModified::exec')
+->setOption('info', THIRDPARTY_PATH.'/HelloWorld/command.hellositemodified.json');
 
 
-$app->match('/search/command/helloworld/{parameters}', function ($parameters) use ($app) {
-    $params = json_decode(base64_decode($parameters), true);
-    $search = $params['search'];
-    $search['text'] = 'Ich bin ein Treffer!';
-    $result = array(
-        'search' => $search
-    );
-    return base64_encode(json_encode($result));
-});

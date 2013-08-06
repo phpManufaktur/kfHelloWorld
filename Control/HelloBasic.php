@@ -13,12 +13,12 @@ namespace thirdParty\HelloWorld\Control;
 
 use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
 
-class Sample06 extends kitCommandBasic
+class HelloBasic extends kitCommandBasic
 {
 
     public function exec()
     {
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'sample06.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.basic.twig', $this->getPreferredTemplateStyle()),
             array(
                 'cms' => $this->getCMSinfoArray()
         ));

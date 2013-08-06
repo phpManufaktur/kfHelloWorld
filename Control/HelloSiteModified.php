@@ -12,12 +12,16 @@
 namespace thirdParty\HelloWorld\Control;
 
 use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
+use Silex\Application;
 
-class SiteModified extends kitCommandBasic
+class HelloSiteModified extends kitCommandBasic
 {
-    public function exec()
+    public function exec(Application $app)
     {
-        if (!in_array(self::$cms['type'], array('WebsiteBaker', 'LEPTON'))) {
+        $this->app = $app;
+        $this->initParameters();
+
+        if (!in_array(CMS_TYPE, array('WebsiteBaker', 'LEPTON'))) {
             // SiteModified support only WebsiteBaker or LEPTON
             return $this->app['translator']->trans('~~ <b>Error</b>: SiteModified support only WebsiteBaker or LEPTON CMS. ~~');
         }

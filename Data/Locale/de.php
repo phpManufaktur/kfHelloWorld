@@ -59,6 +59,8 @@ return array(
         => 'Diese Website wurde zuletzt am %datetime% modifiziert.',
     'Title'
         => 'Titel',
+    'Use <code>~~ help ~~</code> to view the <a href="%link%">general help file for the kitCommands</a>.'
+        => 'Verwenden Sie <code>~~ help ~~</code> um sich die <a href="%link%">allgemeine Hilfe zu den kitCommands</a> anzeigen zu lassen.',
     'We have send you a confirmation to <b>%email%</b>, please check your inbox.'
         => 'Wir haben Ihnen eine Bestätigung an die Adresse <b>%email%</b> gesendet, bitte überprüfen Sie Ihr Postfach.'
 );
