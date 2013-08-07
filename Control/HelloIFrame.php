@@ -24,8 +24,7 @@ class HelloIFrame extends kitCommandBasic {
      */
     public function start(Application $app)
     {
-        $this->app = $app;
-        $this->initParameters();
+        $this->initParameters($app);
 
         $this->setRedirectRoute('/helloworld/iframe/start');
         return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.start.twig', $this->getPreferredTemplateStyle()),
@@ -69,11 +68,10 @@ class HelloIFrame extends kitCommandBasic {
      */
     public function step02(Application $app)
     {
-        $this->app = $app;
-        $this->initParameters();
+        $this->initParameters($app);
 
         $form = $this->createForm();
-        $this->setRedirectRoute('/helloworld/sample08/step02');
+        $this->setRedirectRoute('/helloworld/iframe/step02');
         return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step02.twig', $this->getPreferredTemplateStyle()),
             array(
                 'form' => $form->createView(),
@@ -83,8 +81,7 @@ class HelloIFrame extends kitCommandBasic {
 
     public function step03(Application $app)
     {
-        $this->app = $app;
-        $this->initParameters();
+        $this->initParameters($app);
 
         // create the form
         $form = $this->createForm();
@@ -94,7 +91,7 @@ class HelloIFrame extends kitCommandBasic {
         if (!$form->isValid()) {
             // something went wrong, possible CSFR attack - return to the default form and prompt a message
             $this->setMessage($this->app['translator']->trans('<p>The submitted form is not valid, please try again.</p>'));
-            return $this->step02();
+            return $this->step02($this->app);
         }
         // get the data from the form
         $form_data = $form->getData();
@@ -123,8 +120,7 @@ class HelloIFrame extends kitCommandBasic {
 
     public function step04(Application $app, $id)
     {
-        $this->app = $app;
-        $this->initParameters();
+        $this->initParameters($app);
 
         // select the contact data from the database
         $HelloWorld = new HelloWorld($this->app);

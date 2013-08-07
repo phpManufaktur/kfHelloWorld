@@ -84,8 +84,6 @@ $app->post('/command/hellobasic', function() use ($app) {
 });
 
 /**
- * Sample 8: Start
- *
  * Use the function createIFrame() of class kitCommand\Basic to create a iframe
  * which will contain the response of the kitCommand. The iframe source point to
  * a route of the kitFramework.
