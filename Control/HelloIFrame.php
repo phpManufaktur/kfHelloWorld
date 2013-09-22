@@ -104,7 +104,7 @@ class HelloIFrame extends kitCommandBasic {
         // now we want to save the data to the database
         $HelloWorld = new HelloWorld($this->app);
         // ensure that the table is created
-        $HelloWorld->createTable();
+  //$HelloWorld->createTable();
         // collect the data
         $record = array(
             'title' => $form_data['title'],
