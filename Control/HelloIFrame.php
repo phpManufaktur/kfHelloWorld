@@ -27,7 +27,10 @@ class HelloIFrame extends kitCommandBasic {
         $this->initParameters($app);
 
         $this->setRedirectRoute('/helloworld/iframe/start');
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.start.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->getTemplateFile(
+            '@thirdParty/HelloWorld/Template',
+            'hello.iframe.start.twig',
+            $this->getPreferredTemplateStyle()),
             array(
                 'basic' => $this->getBasicSettings()
         ));
@@ -72,7 +75,10 @@ class HelloIFrame extends kitCommandBasic {
 
         $form = $this->createForm();
         $this->setRedirectRoute('/helloworld/iframe/step02');
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step02.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->getTemplateFile(
+            '@thirdParty/HelloWorld/Template',
+            'hello.iframe.step02.twig',
+            $this->getPreferredTemplateStyle()),
             array(
                 'form' => $form->createView(),
                 'basic' => $this->getBasicSettings()
@@ -111,7 +117,10 @@ class HelloIFrame extends kitCommandBasic {
 
         $this->setRedirectRoute('/helloworld/iframe/step04/'.$record['id']);
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step03.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->getTemplateFile(
+            '@thirdParty/HelloWorld/Template',
+            'hello.iframe.step03.twig',
+            $this->getPreferredTemplateStyle()),
             array(
                 'data' => $record,
                 'basic' => $this->getBasicSettings()
@@ -127,7 +136,10 @@ class HelloIFrame extends kitCommandBasic {
         $data = $HelloWorld->select($id);
 
         // create the email body
-        $body = $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.email.twig', $this->getPreferredTemplateStyle()),
+        $body = $this->app['twig']->render($this->app['utils']->getTemplateFile(
+            '@thirdParty/HelloWorld/Template',
+            'hello.iframe.email.twig',
+            $this->getPreferredTemplateStyle()),
             array('data' => $data));
 
         // create the message
@@ -142,7 +154,10 @@ class HelloIFrame extends kitCommandBasic {
 
         $this->setRedirectRoute('/helloworld/iframe/step04/'.$id);
 
-        return $this->app['twig']->render($this->app['utils']->templateFile('@thirdParty/HelloWorld/Template', 'hello.iframe.step04.twig', $this->getPreferredTemplateStyle()),
+        return $this->app['twig']->render($this->app['utils']->getTemplateFile(
+            '@thirdParty/HelloWorld/Template',
+            'hello.iframe.step04.twig',
+            $this->getPreferredTemplateStyle()),
             array(
                 'data' => $data,
                 'basic' => $this->getBasicSettings()
