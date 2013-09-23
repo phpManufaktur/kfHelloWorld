@@ -12,7 +12,7 @@
     "about":"\/helloworld\/about"
   },
   "release": {
-    "number":"0.23",
+    "number":"0.24",
     "date":"2013-09-23",
     "status":"beta"
   },
@@ -29,8 +29,10 @@
       "release":"0.26"
     },
     "extension":{
-        "Basic":{
-            "release":"0.35"
+        "phpManufaktur":{
+            "Basic":{
+                "release":"0.35"
+            }
         }
     }
   },
