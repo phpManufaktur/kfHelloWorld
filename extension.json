@@ -12,8 +12,8 @@
     "about":"\/helloworld\/about"
   },
   "release": {
-    "number":"0.22",
-    "date":"2013-09-22",
+    "number":"0.23",
+    "date":"2013-09-23",
     "status":"beta"
   },
   "description": {
@@ -27,11 +27,16 @@
   "require": {
     "framework": {
       "release":"0.26"
+    },
+    "extension":{
+        "Basic":{
+            "release":"0.35"
+        }
     }
   },
   "setup": {
     "install":"\/admin\/helloworld\/setup",
-    "upgrade":"\/admin\/helloworld\/upgrade",
+    "update":"\/admin\/helloworld\/update",
     "uninstall":"\/admin\/helloworld\/uninstall"
   },
   "license":"MIT License",

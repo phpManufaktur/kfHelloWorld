@@ -19,16 +19,16 @@ $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
 // scan the /Locale/Custom directory and add all available languages
 $app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale/Custom');
 
-// setup, upgrade and uninstall of "HelloWorld"
+// setup, update and uninstall of "HelloWorld"
 $admin->get('/helloworld/setup', function() use($app) {
     $HelloWorldData = new HelloWorldData($app);
     $HelloWorldData->createTable();
     return $app['translator']->trans('Successfull installed the extension %extension%.',
         array('%extension%' => 'HelloWorld'));
 });
-$admin->get('/helloworld/upgrade', function() use($app) {
+$admin->get('/helloworld/update', function() use($app) {
     // nothing to do, just return the message
-    return $app['translator']->trans('Successfull upgraded the extension %extension%.',
+    return $app['translator']->trans('Successfull updated the extension %extension%.',
         array('%extension%' => 'HelloWorld'));
 });
 $admin->get('/helloworld/uninstall', function() use($app) {
