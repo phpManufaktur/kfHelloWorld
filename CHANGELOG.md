@@ -6,7 +6,7 @@ MIT License (MIT) - <http://www.opensource.org/licenses/MIT>
 
 kitFramework - <https://kit2.phpmanufaktur.de>
 
-**0.24** - 2013-09-23
+**0.25** - 2013-09-23
 
 * fixed wrong dependency in `extension.json`
 
