@@ -11,11 +11,11 @@
 
 namespace thirdParty\HelloWorld\Control;
 
-use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
+use phpManufaktur\Basic\Control\kitCommand\Basic;
 use thirdParty\HelloWorld\Data\HelloWorld;
 use Silex\Application;
 
-class HelloIFrame extends kitCommandBasic {
+class HelloIFrame extends Basic {
 
     /**
      * Show a simple dialog within a iframe
@@ -96,15 +96,13 @@ class HelloIFrame extends kitCommandBasic {
         // check the form
         if (!$form->isValid()) {
             // something went wrong, possible CSFR attack - return to the default form and prompt a message
-            $this->setMessage($this->app['translator']->trans('<p>The submitted form is not valid, please try again.</p>'));
+            $this->setAlert('The submitted form is not valid, please try again.');
             return $this->step02($this->app);
         }
         // get the data from the form
         $form_data = $form->getData();
         // now we want to save the data to the database
         $HelloWorld = new HelloWorld($this->app);
-        // ensure that the table is created
-  //$HelloWorld->createTable();
         // collect the data
         $record = array(
             'title' => $form_data['title'],
