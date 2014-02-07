@@ -6,6 +6,10 @@ MIT License (MIT) - <http://www.opensource.org/licenses/MIT>
 
 kitFramework - <https://kit2.phpmanufaktur.de>
 
+**0.29** - 2014-02-07
+
+* changed sample `HelloIFrame` to class `Alert`, some smaller changes
+
 **0.28** - 2013-12-01 
 
 * changed description in `extension.json`
