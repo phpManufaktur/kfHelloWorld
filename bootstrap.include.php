@@ -14,11 +14,6 @@ use thirdParty\HelloWorld\Control\HelloBasic;
 use phpManufaktur\Basic\Control\kitCommand\Basic as kitCommandBasic;
 use thirdParty\HelloWorld\Data\HelloWorld as HelloWorldData;
 
-// scan the /Locale directory and add all available languages
-$app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale');
-// scan the /Locale/Custom directory and add all available languages
-$app['utils']->addLanguageFiles(THIRDPARTY_PATH.'/HelloWorld/Data/Locale/Custom');
-
 // setup, update and uninstall of "HelloWorld"
 $admin->get('/helloworld/setup', function() use($app) {
     $HelloWorldData = new HelloWorldData($app);
