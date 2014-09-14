@@ -19,8 +19,8 @@
   "path":"\/extension\/thirdparty\/thirdParty\/HelloWorld",
   "namespace":"thirdParty\\HelloWorld",
   "release": {
-    "number":"0.29",
-    "date":"2014-02-07",
+    "number":"0.30",
+    "date":"2014-09-14",
     "status":"beta",
     "changelog":"https:\/\/github.com\/phpManufaktur\/kfHelloWorld\/blob\/master\/CHANGELOG.md"
   },
@@ -45,7 +45,7 @@
     "extension":{
         "phpManufaktur":{
             "Basic":{
-                "release":"0.78"
+                "release":"1.0.12"
             }
         }
     }

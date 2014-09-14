@@ -6,6 +6,13 @@ MIT License (MIT) - <http://www.opensource.org/licenses/MIT>
 
 kitFramework - <https://kit2.phpmanufaktur.de>
 
+**0.30** - 2014-09-14
+
+* all language files are now loaded by the BASIC extension
+* updated `@link` references
+* updated info URL
+* updated info URL in CMS Tool
+
 **0.29** - 2014-02-07
 
 * changed sample `HelloIFrame` to class `Alert`, some smaller changes
