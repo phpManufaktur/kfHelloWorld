@@ -4,7 +4,7 @@ The **Hello World Extension** for the [kitFramework](https://kit2.phpmanufaktur.
 
 The [Hello World Wiki](https://github.com/phpManufaktur/kfHelloWorld/wiki/Home) will guide you step by step.
 
-#### Requirements
+#### Requirements for hello world
 
 * kitFramework installed
 * Hello World Extension installed
